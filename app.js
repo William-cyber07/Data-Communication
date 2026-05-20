@@ -81,10 +81,17 @@ style.textContent = `
 document.head.appendChild(style);
 createStars();
 
-// ============ PROFILE PHOTO UPLOAD ============
+// ============ PROFILE PHOTO UPLOAD (secret double-click to reveal) ============
 const profileUpload = document.getElementById('profileUpload');
 const profileImg = document.getElementById('profileImg');
 const profilePlaceholder = document.getElementById('profilePlaceholder');
+const uploadBtn = document.getElementById('uploadBtn');
+const profilePic = document.getElementById('profilePic');
+
+// Double-click the profile picture to reveal the upload button
+profilePic.addEventListener('dblclick', () => {
+  uploadBtn.style.display = uploadBtn.style.display === 'none' ? 'inline-flex' : 'none';
+});
 
 profileUpload.addEventListener('change', function() {
   const file = this.files[0];
@@ -95,76 +102,18 @@ profileUpload.addEventListener('change', function() {
     profileImg.style.display = 'block';
     profilePlaceholder.style.display = 'none';
     localStorage.setItem('profilePhoto', e.target.result);
+    uploadBtn.style.display = 'none';
   };
   reader.readAsDataURL(file);
 });
 
-// ============ SAVE PROFILE ============
-const saveProfileBtn = document.getElementById('saveProfileBtn');
-const saveNotice = document.getElementById('saveNotice');
-
-saveProfileBtn.addEventListener('click', () => {
-  const profileData = {
-    name: document.getElementById('nameField').innerText,
-    id: document.getElementById('idField').innerText,
-    program: document.getElementById('programField').innerText,
-    institution: document.getElementById('institutionField').innerText,
-    email: document.getElementById('emailField').innerText,
-    bio: document.getElementById('bioField').innerText,
-  };
-  localStorage.setItem('profileData', JSON.stringify(profileData));
-  saveNotice.style.display = 'inline';
-  setTimeout(() => { saveNotice.style.display = 'none'; }, 2500);
-});
-
-// ============ SAVE ACKNOWLEDGEMENTS ============
-const saveAckBtn = document.getElementById('saveAckBtn');
-const ackSaveNotice = document.getElementById('ackSaveNotice');
-
-saveAckBtn.addEventListener('click', () => {
-  const ackData = {
-    lecturerName: document.getElementById('lecturerName').innerText,
-    lecturerDept: document.getElementById('lecturerDept').innerText,
-    lecturerMsg: document.getElementById('lecturerMsg').innerText,
-    institution: document.getElementById('ackInstitution').innerText,
-    institutionText: document.getElementById('ackInstitutionText').innerText,
-  };
-  localStorage.setItem('ackData', JSON.stringify(ackData));
-  ackSaveNotice.style.display = 'inline';
-  setTimeout(() => { ackSaveNotice.style.display = 'none'; }, 2500);
-});
-
-// ============ LOAD SAVED DATA ============
+// ============ LOAD SAVED PHOTO ============
 function loadSavedData() {
-  // Profile photo
   const savedPhoto = localStorage.getItem('profilePhoto');
   if (savedPhoto) {
     profileImg.src = savedPhoto;
     profileImg.style.display = 'block';
     profilePlaceholder.style.display = 'none';
-  }
-
-  // Profile fields
-  const savedProfile = localStorage.getItem('profileData');
-  if (savedProfile) {
-    const p = JSON.parse(savedProfile);
-    if (p.name) document.getElementById('nameField').innerText = p.name;
-    if (p.id) document.getElementById('idField').innerText = p.id;
-    if (p.program) document.getElementById('programField').innerText = p.program;
-    if (p.institution) document.getElementById('institutionField').innerText = p.institution;
-    if (p.email) document.getElementById('emailField').innerText = p.email;
-    if (p.bio) document.getElementById('bioField').innerText = p.bio;
-  }
-
-  // Acknowledgements
-  const savedAck = localStorage.getItem('ackData');
-  if (savedAck) {
-    const a = JSON.parse(savedAck);
-    if (a.lecturerName) document.getElementById('lecturerName').innerText = a.lecturerName;
-    if (a.lecturerDept) document.getElementById('lecturerDept').innerText = a.lecturerDept;
-    if (a.lecturerMsg) document.getElementById('lecturerMsg').innerText = a.lecturerMsg;
-    if (a.institution) document.getElementById('ackInstitution').innerText = a.institution;
-    if (a.institutionText) document.getElementById('ackInstitutionText').innerText = a.institutionText;
   }
 }
 

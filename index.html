@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -523,45 +523,45 @@
               <img id="profileImg" src="" alt="Profile Photo" style="display:none;" />
               <div class="profile-placeholder" id="profilePlaceholder">
                 <span>👤</span>
-                <p>Upload Photo</p>
+                <p>No Photo</p>
               </div>
             </div>
-            <label class="profile-upload-btn" for="profileUpload">
+            <!-- Upload button hidden by default, revealed with secret click -->
+            <label class="profile-upload-btn" for="profileUpload" id="uploadBtn" style="display:none;">
               <span>📷</span> Change Photo
             </label>
             <input type="file" id="profileUpload" accept="image/*" style="display:none;" />
           </div>
 
-          <div class="profile-info" id="profileInfo">
+          <div class="profile-info">
             <div class="profile-field">
               <label>Full Name</label>
-              <div class="editable-field" id="nameField" contenteditable="true" data-placeholder="Your Full Name">Your Full Name</div>
+              <div class="static-field">Donkoh William Junior</div>
             </div>
             <div class="profile-field">
               <label>Student ID</label>
-              <div class="editable-field" id="idField" contenteditable="true" data-placeholder="e.g. 12345678">Student ID Number</div>
+              <div class="static-field">PUIS/24210032</div>
             </div>
             <div class="profile-field">
               <label>Programme</label>
-              <div class="editable-field" id="programField" contenteditable="true" data-placeholder="e.g. BSc Computer Engineering">Your Programme</div>
+              <div class="static-field">Industrial Software Engineering</div>
             </div>
             <div class="profile-field">
               <label>Institution</label>
-              <div class="editable-field" id="institutionField" contenteditable="true" data-placeholder="Your University / College">Your Institution</div>
+              <div class="static-field">Pentecost University</div>
             </div>
             <div class="profile-field">
               <label>Email</label>
-              <div class="editable-field" id="emailField" contenteditable="true" data-placeholder="your.email@institution.edu">your.email@institution.edu</div>
+              <div class="static-field">williamdonkoh4@gmail.com</div>
             </div>
             <div class="profile-field full">
               <label>About Me</label>
-              <div class="editable-field bio" id="bioField" contenteditable="true" data-placeholder="Write a short bio about yourself...">Write a short bio about yourself — your area of study, research interests, and what motivated you to explore satellite communication systems.</div>
+              <div class="static-field bio-static">Donkoh William Junior is a passionate Industrial Software Engineering student at Pentecost University, driven by a deep curiosity for how technology shapes the world around us. With a keen interest in systems design, communication technologies, and software innovation, William approaches every challenge with analytical precision and creative thinking. This research into satellite communication systems reflects his commitment to understanding the infrastructure that powers global connectivity — and his ambition to one day contribute to building it.</div>
             </div>
-            <button class="save-btn" id="saveProfileBtn">Save Profile</button>
-            <span class="save-notice" id="saveNotice" style="display:none;">✓ Profile saved!</span>
           </div>
         </div>
       </div>
+      <!-- Secret area: double-click the profile pic to reveal upload button -->
     </section>
 
     <!-- ACKNOWLEDGEMENTS -->
@@ -576,9 +576,9 @@
           <div class="ack-icon">🎓</div>
           <div class="ack-body">
             <h3>Course Lecturer</h3>
-            <div class="editable-field lecturer-name" id="lecturerName" contenteditable="true" data-placeholder="Dr. / Prof. Lecturer Name">Dr. / Prof. Lecturer Name</div>
-            <div class="editable-field lecturer-dept" id="lecturerDept" contenteditable="true" data-placeholder="Department of Electrical & Communication Engineering">Department / Faculty</div>
-            <div class="editable-field lecturer-msg" id="lecturerMsg" contenteditable="true">I would like to express my sincere gratitude to my course lecturer for their guidance, expertise, and consistent support throughout this assignment. Their comprehensive teaching of data communication principles provided the foundational knowledge required to undertake this in-depth analysis of satellite communication systems. The clarity with which complex topics such as orbital mechanics, link budgets, and spectral engineering were introduced made it possible to explore the subject at this level of technical depth. I am deeply appreciative of the time and dedication invested in shaping my understanding of this field.</div>
+            <div class="lecturer-name-static">Dr. Harry Atieku Boateng</div>
+            <div class="lecturer-dept-static">Faculty of Engineering, Science and Computing — Pentecost University</div>
+            <p class="ack-msg">I would like to express my heartfelt gratitude to Dr. Harry Atieku Boateng of the Faculty of Engineering, Science and Computing at Pentecost University, for his exceptional guidance and mentorship throughout this course. His depth of knowledge, dedication to student success, and ability to make complex technical concepts accessible have been truly inspiring. This research paper would not have been possible without the strong foundation he provided. I am deeply grateful for his time, patience, and unwavering support.</p>
           </div>
         </div>
 
@@ -586,8 +586,8 @@
           <div class="ack-icon">🏛</div>
           <div class="ack-body">
             <h3>Institution</h3>
-            <div class="editable-field" id="ackInstitution" contenteditable="true" data-placeholder="Your University / College">Your University / College</div>
-            <div class="editable-field ack-text" id="ackInstitutionText" contenteditable="true">I am grateful to my institution for providing access to the academic resources, research databases, and learning environment that enabled the production of this paper. The library resources and digital infrastructure made accessible the technical literature — including IEEE Transactions, 3GPP specifications, and ITU Radio Regulations — that form the citation backbone of this work.</div>
+            <div class="lecturer-name-static">Pentecost University</div>
+            <p class="ack-msg">I am grateful to Pentecost University for providing access to the academic resources, research databases, and learning environment that enabled the production of this paper. The library resources and digital infrastructure made accessible the technical literature — including IEEE Transactions, 3GPP specifications, and ITU Radio Regulations — that form the citation backbone of this work.</p>
           </div>
         </div>
 
@@ -595,24 +595,14 @@
           <div class="ack-icon">📚</div>
           <div class="ack-body">
             <h3>Key References & Standards Bodies</h3>
-            <p>This paper draws extensively on the technical standards and academic contributions of the <strong>International Telecommunication Union (ITU)</strong>, the <strong>3rd Generation Partnership Project (3GPP)</strong>, the <strong>European Telecommunications Standards Institute (ETSI)</strong>, and the <strong>Consultative Committee for Space Data Systems (CCSDS)</strong>. The authors cited throughout — from Vallado's astrodynamics to Kessler's foundational debris analysis — form the scholarly foundation upon which this synthesis rests.</p>
+            <p class="ack-msg">This paper draws extensively on the technical standards and academic contributions of the <strong>International Telecommunication Union (ITU)</strong>, the <strong>3rd Generation Partnership Project (3GPP)</strong>, the <strong>European Telecommunications Standards Institute (ETSI)</strong>, and the <strong>Consultative Committee for Space Data Systems (CCSDS)</strong>. The authors cited throughout — from Vallado's astrodynamics to Kessler's foundational debris analysis — form the scholarly foundation upon which this synthesis rests.</p>
           </div>
-        </div>
-
-        <div class="ack-save-row">
-          <button class="save-btn" id="saveAckBtn">Save Acknowledgements</button>Sign In
-          or
-          
-          Enter your email
-          By continuing, you acknowledge Anthropic’s Privacy Policy(opens in a new tab).
-          
-          <span class="save-notice" id="ackSaveNotice" style="display:none;">✓ Saved!</span>
         </div>
       </div>
     </section>
 
   </main>
 
-  <script src="./app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
